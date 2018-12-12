@@ -1,0 +1,31 @@
+<!--home.wxml-->
+<view class="container">
+    <!-- //头部轮播图 -->
+    <swiper indicator-dots="true" interval="2000" duration="500" class="topSwiper">
+        <block wx:for="{{topShopList}}" wx:for-index="idx" wx:for-item="item">
+            <swiper-item>
+                  <navigator url="/pages/detail/detail?id={{item.id}}">
+                      <image src="{{item}}"/>
+                  </navigator>
+            </swiper-item>
+        </block>     
+    </swiper>
+
+    <view class="main-wrap">
+        <block wx:for="{{mainShopList}}">
+            <navigator class="shop-list" url='/pages/layout/detailList?id={{item.id}}&latitude={{item.latitude}}&longitude={{item.longitude}}'>
+                <view>
+                    <view class="shop-img">
+                        <image src="https://fuss10.elemecdn.com/{{item.image_path}}"/>
+                    </view>
+                    <view class="shop-right">
+                        <view class="now-title">{{item.name}}</view>
+                        <view class="evaluate">{{item.address}}</view>
+                        <view class="describe">{{item.piecewise_agent_fee.description}}</view>
+                    </view>
+                </view>
+            </navigator>
+        </block>
+    </view>
+</view>
+
