@@ -1,0 +1,8 @@
+<!--开始界面-->
+<view class='container'>
+<view wx:if="{{userinfo}}">
+  <image class='userIcon' src="{{userInfo.avatarUrl}}"></image>
+</view>
+<h1>欢迎来到四月烘培坊</h1>
+<!-- <button bindtap='getUserInfo' class="start" style='margin-top: 20rem'>立即体验</button> -->
+</view>

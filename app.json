@@ -1,8 +1,13 @@
 {
   "pages": [
+    "pages/start/start",
     "pages/home/home",
     "pages/user/userinfo",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/test/test",
+    "pages/newproduct/newproduct",
+    "pages/hotproduct/hotproduct",
+    "pages/offproduct/offproduct"
   ],
   "window": {
     "backgroundTextStyle": "light",

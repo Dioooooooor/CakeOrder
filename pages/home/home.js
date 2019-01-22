@@ -1,19 +1,26 @@
 // pages/home/home.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    topShopList:{},
-    mainShopList:{}
+    recommend:{},   //推荐列表
+    commodities:{},         //商品列表
+    navs: [             //导航
+      { icon: "", name: "新品", typeId: 0 },
+      { icon: "", name: "热门", typeId: 1 },
+      { icon: "", name: "折扣", typeId: 2 },
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this)
+    //console.log(this)
     this.laodRecommendInfo()
   },
 
@@ -71,14 +78,17 @@ Page({
    */
   laodRecommendInfo: function(){
     wx.request({
-      url: 'https://www.caochen.com/RecommendInfo',
+      url: 'http://api.caochen.com:5000/v1/commodities',
       data: {},
       method: "GET",
       header:{
         'content-type': 'application/json'
       },
-      success: function(res){
+      success: res => {
         console.log(res)
+        this.setData({
+          recommend: res.data.items,
+        })
       },
       fail: function(){
         console.log("failed")
@@ -90,6 +100,39 @@ Page({
    * 获取所有商品信息
    */
   loadCommodityInfo: function(){
+    wx.request({
+      url: 'http://api.caochen.com:5000/v1/commodities',
+      data: {},
+      method: "GET",
+      header: {
+        'content-type': 'application/json'
+      },
+      success: res => {
+        console.log(res)
+        this.setData({
+          commodities: res.data.items,
+        })
+      },
+      fail: function () {
+        console.log("failed")
+      }
+    })
+  },
 
+  catchTapCategory: function(e){
+    var data = e.currentTarget.dataset
+    app.globalData.currentCateType = { typeName: data.type, typeId: data.typeid }
+    var jumpUrl = ""
+    switch(data.typeid){
+      case 0: jumpUrl = "../newproduct/newproduct" 
+        break;
+      case 1: jumpUrl = "../hotproduct/hotproduct"
+        break;
+      case 2: jumpUrl = "../offproduct/offproduct"
+        break;
+    }
+    wx.navigateTo({
+      url: jumpUrl,
+    })
   }
 })

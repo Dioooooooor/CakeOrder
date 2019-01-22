@@ -1,1 +1,13 @@
-/* pages/home/home.wxss */
+.navs{
+  display: flex;
+}
+
+.nav-item{
+  width: 33.33%;
+  text-align: center;
+}
+
+.nav-text{
+  text-align: center;
+  width: 100%
+}
