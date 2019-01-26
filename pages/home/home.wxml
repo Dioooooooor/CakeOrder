@@ -1,10 +1,10 @@
 <!--home.wxml-->
 <scroll-view scroll-y="true" height="100%">
 
-  <swiper indicator-dots="true" interval="2000" duration="500" style="height: 240rpx">
+  <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" class='borderSwiper'>
       <block wx:for="{{recommend}}" wx:key="" wx:for-index="idx" wx:for-item="item">
           <swiper-item>
-            <image src="{{item.primaryicon}}" mode="aspectFit" style="width: 100%; heigth: 240px;"></image>
+            <image src="{{item.primaryicon}}" style="width: 100%; heigth: 240px;"></image>
           </swiper-item>
       </block>     
   </swiper>
@@ -13,11 +13,18 @@
   <view class="navs" style="flex-direction:row;">
     <block wx:for="{{navs}}" wx:for-item="nav" wx:key="name">
       <view class="nav-item" catchtap="catchTapCategory" data-type="{{nav.name}}" data-typeid="{{nav.typeId}}">
-        {{nav.name}}
+      <image src='{{nav.icon}}' class="nav-img"></image>
+      {{nav.name}}
       </view>
     </block>
   </view>
-</view>  
+</view>
+
+<view class="block"></view>
+
+<view></view>
+
+
 </scroll-view>
 
 

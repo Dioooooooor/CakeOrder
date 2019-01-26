@@ -1,2 +1,45 @@
 <!--pages/newproduct.wxml-->
-<text>pages/newproduct.wxml</text>
+<view class='header'>
+新品
+</view>
+<!-- <view class='title'>
+  <view class='title-text'>综合</view>
+  <view class='title-text'>销量</view>
+</view> -->
+
+<view>
+  <view wx:if="{{news.length == 0}}">
+    <view calss='notice'>没有商品</view>
+  </view>
+  <view wx:if="{{news.length > 0}}">
+    <scroll-view scroll-y="true" height="100%">
+     <view class="new-container">
+        <block wx:for="{{news}}" wx:for-item="new" wx:key="id">
+          <view class='new-item' bindtap="bindTapProduct" data-id="{{new.id}}">
+            <view class='new-img'>
+              <image src='{{new.primaryicon}}' mode='widthFix' style='width: 100%'></image>
+            </view>
+            <view class='new-text'>
+              <text class='new-title'>{{new.name}}</text>
+              <view wx:if="{{new.labels}}">
+                <block wx:for="{{new.labels}}" wx:item="lable" wx:key="">
+                  {{lable}}
+                </block>
+              </view>
+              <view wx:else>
+                <view class='new-block'></view>
+              </view>
+              <text class='new-price'>￥{{new.price}}</text>
+              <!-- <view class='new-detail'>
+                <text class='text-detail'>{{new.detail}}</text>
+              </view> -->
+              <!-- <view class='new-price'>
+                ￥{{new.price}}
+              </view> -->
+            </view>
+          </view>
+        </block>
+     </view>
+    </scroll-view>
+  </view>
+</view>

@@ -7,25 +7,40 @@
     "pages/test/test",
     "pages/newproduct/newproduct",
     "pages/hotproduct/hotproduct",
-    "pages/offproduct/offproduct"
+    "pages/offproduct/offproduct",
+    "pages/cart/cart"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "black",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "大四月的烘培工坊",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#ff00ff"
+    "backgroundColor": "white",
+    "enablePullDownRefresh": false
   },
   "tabBar": {
+    "color": "black",
+    "backgroundColor": "white",
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "商品"
+        "iconPath": "images/tabBar/home.png",
+        "selectedIconPath": "images/tabBar/home_active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "images/tabBar/cart.png",
+        "selectedIconPath": "images/tabBar/cart_active.png",
+        "text": "购物车"
       },
       {
         "pagePath": "pages/user/userinfo",
+        "iconPath": "images/tabBar/user.png",
+        "selectedIconPath": "images/tabBar/user_active.png",
         "text": "个人中心"
       }
     ]
-  }
+  },
+  "debug": true
 }

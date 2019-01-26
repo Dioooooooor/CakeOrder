@@ -1,22 +1,18 @@
-// pages/newproduct.js
-const app = getApp()
-const globalData = require('../../utils/globalData.js')
-const http = require('../../utils/http.js')
-
+// pages/cart/cart.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    news: [],
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.laodNewInfo()
+
   },
 
   /**
@@ -66,25 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-    /**
-   * 获取新品信息
-   */
-  laodNewInfo: function () {
-    var data = {}
-    data.url = globalData.GlobalData.ServerURL + '/commodities'
-    data.param = {}
-    data.mode = 'GET'
-    var success = function (ins, res) {
-      console.log(res)
-      ins.setData({
-        news: res.items,
-      })
-    }
-    var fail = function (ins) {
-      console.log("failed")
-    }
-    http.sendRequest(globalData.GlobalData.HttpGateURL, data, "POST", this, success, this, fail)
-  },
+  }
 })

@@ -1,5 +1,7 @@
 // pages/home/home.js
 const app = getApp()
+const globalData = require('../../utils/globalData.js')
+const http = require('../../utils/http.js')
 
 Page({
 
@@ -10,9 +12,9 @@ Page({
     recommend:{},   //推荐列表
     commodities:{},         //商品列表
     navs: [             //导航
-      { icon: "", name: "新品", typeId: 0 },
-      { icon: "", name: "热门", typeId: 1 },
-      { icon: "", name: "折扣", typeId: 2 },
+      { icon: "../../images/navs/new.png", name: "新品", typeId: 0 },
+      { icon: "../../images/navs/hot.png", name: "热门", typeId: 1 },
+      { icon: "../../images/navs/off.png", name: "折扣", typeId: 2 },
     ]
   },
 
@@ -77,23 +79,38 @@ Page({
    * 获取推荐信息
    */
   laodRecommendInfo: function(){
-    wx.request({
-      url: 'http://api.caochen.com:5000/v1/commodities',
-      data: {},
-      method: "GET",
-      header:{
-        'content-type': 'application/json'
-      },
-      success: res => {
-        console.log(res)
-        this.setData({
-          recommend: res.data.items,
-        })
-      },
-      fail: function(){
-        console.log("failed")
-      }
-    })
+    var data = {}
+    data.url = globalData.GlobalData.ServerURL + '/commodities'
+    data.param = {}
+    data.mode = 'GET'
+    var success = function(ins, res) {
+      console.log(res)
+      ins.setData({
+        recommend: res.items,
+      })
+    }
+    var fail = function(ins) {
+      console.log("failed")
+    }
+    http.sendRequest(globalData.GlobalData.HttpGateURL, data, "POST", this, success, this, fail)
+
+    // wx.request({
+    //   url: 'http://api.caochen.com:5000/v1/commodities',
+    //   data: {},
+    //   method: "GET",
+    //   header:{
+    //     'content-type': 'application/json'
+    //   },
+    //   success: res => {
+    //     console.log(res)
+    //     this.setData({
+    //       recommend: res.data.items,
+    //     })
+    //   },
+    //   fail: function(){
+    //     console.log("failed")
+    //   }
+    // })
   },
 
   /**
